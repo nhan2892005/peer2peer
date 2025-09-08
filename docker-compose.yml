@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  tracker:
+    image: tracker:latest
+    container_name: tracker
+    ports:
+      - "9000:9000"
+    networks:
+      - p2p-net
+
+  peer1:
+    image: peer:latest
+    container_name: peer1
+    depends_on:
+      - tracker
+    command: run peer1 7001 ./shared/p1
+    volumes:
+      - ./peer/shared/p1:/app/shared/p1
+    networks:
+      - p2p-net
+
+  peer2:
+    image: peer:latest
+    container_name: peer2
+    depends_on:
+      - tracker
+    command: run peer2 7001 ./shared/p2
+    volumes:
+      - ./peer/shared/p2:/app/shared/p2
+    networks:
+      - p2p-net
+
+  peer3:
+    image: peer:latest
+    container_name: peer3
+    depends_on:
+      - tracker
+    command: run peer3 7001 ./shared/p3
+    volumes:
+      - ./peer/shared/p3:/app/shared/p3
+    networks:
+      - p2p-net
+
+networks:
+  p2p-net:
+    driver: bridge

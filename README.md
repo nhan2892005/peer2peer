@@ -265,8 +265,6 @@ big3.bin ━━━━━━━━━━━━━━━━━━━━━━━�
 Complete notify: {'ok': True}
 ```
 
-![](images/p2p.gif)
-
 ---
 
 ## 🐳 Setup Docker Compose
